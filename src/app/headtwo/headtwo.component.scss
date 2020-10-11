@@ -1,0 +1,43 @@
+.locationdetailsdiv {
+  white-space: nowrap;
+}
+
+.locationdiv {
+  display: flex;
+}
+
+.locationpin {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.locationdetailsdiv {
+  flex: 7;
+  font-size: 14px;
+}
+
+.logomain {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.locationpng {
+  width: 32px;
+  height: 36px;
+}
+
+.text-boldd {
+  font-weight: 600;
+}
+
+.locationdetailstwo {
+  font-weight: 600;
+}
+.locationdetailsthree {
+  color: rgb(38, 161, 38);
+}
+
+p {
+  margin: 0px;
+}
