@@ -1,16 +1,17 @@
+import { HomeComponent } from './home/home.component';
+import { Routes, RouterModule } from '@angular/router';
+import { ContactComponent } from './contact/contact.component';
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import { MainlandingComponent } from './mainlanding/mainlanding.component';
 
 const routes: Routes = [
-{path: '/giftcards', redirectTo: '', pathMatch: 'full'},
-{path: 'giftcads', component: MainlandingComponent}
+    {path: '', pathMatch: 'full', redirectTo: '/home' },
+    {path: 'home', component: HomeComponent},
+    {path: 'contact', component: ContactComponent}
 ];
-
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {useHash: true})],
+    imports: [RouterModule.forRoot(routes, { useHash: true})],
     exports: [RouterModule]
 })
-export class AppMainRouting {
+export class AppRoutingModule {
 
 }

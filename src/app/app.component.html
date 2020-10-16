@@ -1,3 +1,8 @@
-<div>
-    <app-mainlanding></app-mainlanding>
+{{routee}}
+<div *ngIf="routee=='home'">
+  <app-home></app-home>
+</div>
+
+<div *ngIf="routee=='contact'">
+  <app-contact></app-contact>
 </div>
