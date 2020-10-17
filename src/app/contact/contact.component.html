@@ -118,7 +118,7 @@
 
         <div class="mt-4 mb-4">
             <label for="cardnumber" class="d-block text-muted">Card Number</label>
-            <input class="d-block inppnumber" [(ngModel)]="cardNumberVal" (input)="cardInputCapture($event)"
+            <input class="d-block inppnumber" [(ngModel)]="cardNumberval" (input)="cardInputCapture($event)"
                 id="cardnumber" type="text" placeholder="Enter your gift card number here">
         </div>
 
@@ -131,7 +131,7 @@
                             this?</small></span>
                 </div>
             </label>
-            <input class="d-block inppnumber" maxlength="4" [(ngModel)]="cardVal" (input)="cardPinCapture($event)"
+            <input class="d-block inppnumber" maxlength="4" [(ngModel)]="cardval" (input)="cardPinCapture($event)"
                 id="cardpin" type="number" placeholder="----">
         </div>
 
