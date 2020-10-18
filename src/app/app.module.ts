@@ -8,13 +8,21 @@ import { ContactComponent } from './contact/contact.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { ModalformComponent } from './modalform/modalform.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ContactComponent,
-    ProductdetailComponent
+    ProductdetailComponent,
+    CheckoutComponent,
+    HeaderComponent,
+    FooterComponent,
+    ModalformComponent
   ],
   imports: [
     BrowserModule,
