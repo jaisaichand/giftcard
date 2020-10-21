@@ -1,0 +1,45 @@
+<app-header></app-header>
+<main class="login-bg">
+    <!-- login Area Start -->
+    <div class="login-form-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="login-form">
+                        <!-- Login Heading -->
+                        <div class="login-heading">
+                            <span>Login</span>
+                            <p>Enter Login details to get access</p>
+                        </div>
+                        <!-- Single Input Fields -->
+                        <div class="input-box">
+                            <div class="single-input-fields">
+                                <label>Username or Email Address</label>
+                                <input type="text" placeholder="Username / Email address">
+                            </div>
+                            <div class="single-input-fields">
+                                <label>Password</label>
+                                <input type="password" placeholder="Enter Password">
+                            </div>
+                            <div class="single-input-fields login-check">
+                                <input type="checkbox" id="fruit1" name="keep-log">
+                                <label for="fruit1">Keep me logged in</label>
+                                <a (click)="forgotPassword()" class="f-right text-primary"
+                                    style="cursor: pointer;">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <!-- form Footer -->
+                        <div *ngIf="!invalidd" class="login-footer">
+
+                            <button class="submit-btn3" (click)="onLogin()">Login</button>
+                        </div>
+                        <p class="text-danger" *ngIf="invalidd">Invalid credentials, Please try again!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- login Area End -->
+</main>
+
+<app-modalform></app-modalform>

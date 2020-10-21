@@ -1,36 +1,71 @@
-<div class="backdrop justify-content-center align-items-center">
-    <div class="formm w-75">
-        <div class="card ">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h2 class="text-center">Fill your details</h2>
-                    <span (click)="closeModal()" style="cursor: pointer;">X</span>
+<div *ngIf="displayform">
+    <div class="backdrop justify-content-center align-items-center">
+        <div class="formm w-75">
+            <div class="card ">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="text-center">Fill your details</h2>
+                        <span (click)="closeModal()" style="cursor: pointer;">X</span>
+                    </div>
+                </div>
+                <div class="card-body ">
+                    <div class="form-group">
+                        <label for="name">Name :</label>
+                        <input [(ngModel)]="namevalue" class="form-control p-4" type="text" id="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email :</label>
+                        <input class="form-control p-4" [(ngModel)]="emailvalue" type="email" id="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address :</label>
+                        <input class="form-control p-4" type="text" [(ngModel)]="addressvalue" id="address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Mobile number :</label>
+                        <input class="form-control p-4" [(ngModel)]="mobilevalue" type="number" id="phone">
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button *ngIf="!showmsgg" class="btn" (click)="clickedSubmit()">Submit</button>
+                    <div *ngIf="showmsgg" style="background: rgb(29, 194, 29); color: white;" class=" p-3">{{msgg}}
+                    </div>
                 </div>
             </div>
-            <div class="card-body ">
-                <div class="form-group">
-                    <label for="name">Name :</label>
-                    <input class="form-control p-4" type="text" id="name">
-                </div>
+        </div>
+    </div>
+</div>
 
-                <div class="form-group">
-                    <label for="email">Email :</label>
-                    <input class="form-control p-4" type="email" id="email">
+<div *ngIf="displayerror">
+    <div class="backdrop justify-content-center align-items-center">
+        <div class="formm w-75">
+            <div class="card ">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="text-center">Balance result</h2>
+                        <span (click)="closeModal()" style="cursor: pointer;">X</span>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="address">Address :</label>
-                    <input class="form-control p-4" type="text" id="address">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-2">
+                            <div>
+                                <span class="errorbtn">X</span>
+                            </div>
+                        </div>
+                        <h1 class="col-10">Ow snap! server is currently receiving huge traffic.
+                            Please try after sometime.
+                        </h1>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="phone">Mobile number :</label>
-                    <input class="form-control p-4" type="number" id="phone">
+                <div class="card-footer text-center">
+                    <button *ngIf="!showmsgg" class="btn" (click)="clickedclose()">close</button>
+                    <div *ngIf="showmsgg" style="background: rgb(29, 194, 29); color: white;" class=" p-3">{{msgg}}
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer text-center">
-                <button *ngIf="!showmsgg" class="btn" (click)="clickedSubmit()">Submit</button>
-                <div *ngIf="showmsgg" style="background: rgb(29, 194, 29); color: white;" class=" p-3">{{msgg}}</div>
             </div>
         </div>
     </div>

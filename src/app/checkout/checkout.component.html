@@ -1,130 +1,138 @@
-<app-header></app-header>
-<main>
-    <!--? slider Area Start-->
-    <div class="slider-area ">
-        <div class="slider-active">
-            <div class="single-slider hero-overly2  slider-height2 d-flex align-items-center slider-bg2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-8 col-md-8">
-                            <div class="hero__caption hero__caption2">
-                                <h1 data-animation="fadeInUp" data-delay=".4s">Checkout</h1>
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item"><a href="#">checkout</a></li>
-                                    </ol>
-                                </nav>
+<div #checkoutt>
+    <app-header></app-header>
+    <main>
+        <!--? slider Area Start-->
+        <div class="slider-area ">
+            <div class="slider-active">
+                <div class="single-slider hero-overly2  slider-height2 d-flex align-items-center slider-bg2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-8 col-md-8">
+                                <div class="hero__caption hero__caption2">
+                                    <h1 data-animation="fadeInUp" data-delay=".4s">Checkout</h1>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                                            <li class="breadcrumb-item"><a routerLink="/checkout">checkout</a></li>
+                                        </ol>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- slider Area End-->
+        <!-- slider Area End-->
 
-    <!--? Checkout Area Start-->
-    <div style="max-width: 80%; margin: auto;" class="mt-5 mb-5">
-        <div *ngIf="checkoutList.length==0">
-            <h3 class="text-center">Oops! Look like you don't have any items in your cart, Go to home and add some
-                products</h3>
+        <!--? Checkout Area Start-->
+        <div style="max-width: 80%; margin: auto;" class="mt-5 mb-5">
+            <div *ngIf="checkoutList.length==0">
+                <h3 class="text-center">Oops! Look like you don't have any items in your cart, Go to <a
+                        class="text-primary" style="cursor: pointer;" routerLink="/home">home</a> and add some
+                    products</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped rounded" *ngIf="checkoutList.length!=0">
+                    <thead>
+                        <tr>
+                            <th scope="col">S No.</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Product Preview</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">controls</th>
+                            <th scope="col">total price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let prod of checkoutList; let ind = index">
+
+                            <td>{{ind+1}}</td>
+                            <td>{{prod.title}}</td>
+                            <td><img class="prodimage" [src]="prod.image" alt=""></td>
+                            <td>{{prod.qty}}</td>
+                            <td><small><button (click)="removeProd(ind,prod.price*prod.qty, prod)"
+                                        class="btn btn-sm btn-danger text-white"><small
+                                            class="text-white">Remove</small></button></small></td>
+                            <td>{{prod.price*prod.qty}}</td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="checkoutList.length!=0" class="d-flex pr-4" style="justify-content: flex-end">
+                <div class="text-center">Your total cart value is {{totalcartprice}}</div>
+
+            </div>
+
+            <div *ngIf="checkoutList.length!=0" class="d-flex justify-content-center">
+                <div><button class="btn btn-success text-white" (click)="openModal()">Proceed to checkout</button></div>
+            </div>
         </div>
-        <table class="table table-striped rounded" *ngIf="checkoutList.length!=0">
-            <thead>
-                <tr>
-                    <th scope="col">S No.</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Product Preview</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">controls</th>
-                    <th scope="col">total price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let prod of checkoutList; let ind = index">
+        <!--End Checkout Area -->
 
-                    <td>{{ind+1}}</td>
-                    <td>{{prod.title}}</td>
-                    <td><img class="prodimage" [src]="prod.image" alt=""></td>
-                    <td>{{prod.qty}}</td>
-                    <td><small><button (click)="removeProd(ind,prod.price*prod.qty, prod)"
-                                class="btn btn-sm btn-danger text-white"><small
-                                    class="text-white">Remove</small></button></small></td>
-                    <td>{{prod.price*prod.qty}}</td>
-                </tr>
-
-
-            </tbody>
-        </table>
-        <div *ngIf="checkoutList.length!=0" class="d-flex pr-4" style="justify-content: flex-end">
-            <div class="text-center">Your total cart value is {{totalcartprice}}</div>
-
-        </div>
-
-        <div *ngIf="checkoutList.length!=0" class="d-flex justify-content-center">
-            <div><button class="btn btn-success text-white" (click)="openModal()">Proceed to checkout</button></div>
-        </div>
-    </div>
-    <!--End Checkout Area -->
-
-    <!--? Services Area Start -->
-    <div class="categories-area section-padding40 gray-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                        <div class="cat-icon">
-                            <img src="assets/img/icon/services1.svg" alt="">
-                        </div>
-                        <div class="cat-cap">
-                            <h5>Fast & Free Delivery</h5>
-                            <p>Free delivery on all orders</p>
+        <!--? Services Area Start -->
+        <div class="categories-area section-padding40 gray-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                            <div class="cat-icon">
+                                <img src="assets/img/icon/services1.svg" alt="">
+                            </div>
+                            <div class="cat-cap">
+                                <h5>Fast & Free Delivery</h5>
+                                <p>Free delivery on all orders</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                        <div class="cat-icon">
-                            <img src="assets/img/icon/services2.svg" alt="">
-                        </div>
-                        <div class="cat-cap">
-                            <h5>Secure Payment</h5>
-                            <p>Free delivery on all orders</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
-                        <div class="cat-icon">
-                            <img src="assets/img/icon/services3.svg" alt="">
-                        </div>
-                        <div class="cat-cap">
-                            <h5>Money Back Guarantee</h5>
-                            <p>Free delivery on all orders</p>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                            <div class="cat-icon">
+                                <img src="assets/img/icon/services2.svg" alt="">
+                            </div>
+                            <div class="cat-cap">
+                                <h5>Secure Payment</h5>
+                                <p>Free delivery on all orders</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                        <div class="cat-icon">
-                            <img src="assets/img/icon/services4.svg" alt="">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
+                            <div class="cat-icon">
+                                <img src="assets/img/icon/services3.svg" alt="">
+                            </div>
+                            <div class="cat-cap">
+                                <h5>Money Back Guarantee</h5>
+                                <p>Free delivery on all orders</p>
+                            </div>
                         </div>
-                        <div class="cat-cap">
-                            <h5>Online Support</h5>
-                            <p>Free delivery on all orders</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                            <div class="cat-icon">
+                                <img src="assets/img/icon/services4.svg" alt="">
+                            </div>
+                            <div class="cat-cap">
+                                <h5>Online Support</h5>
+                                <p>Free delivery on all orders</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--? Services Area End -->
-</main>
+        <!--? Services Area End -->
+    </main>
 
-<app-footer></app-footer>
-<app-modalform *ngIf="modalview"></app-modalform>
-<!-- Scroll Up -->
-<div id="back-top">
-    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    <app-footer></app-footer>
+    <div>
+        <app-modalform></app-modalform>
+    </div>
+
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
 </div>

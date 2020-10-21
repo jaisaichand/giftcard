@@ -603,6 +603,7 @@ productstoppics = [
 ];
 
 prodSubj = new BehaviorSubject<any>(null);
+openModalsubj = new Subject<any>();
 addproductsubj = new Subject();
 closemodalSubj = new Subject();
 cartcount = 0;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ProductserviceService } from '../productservice.service';
 
 @Component({
@@ -9,10 +9,13 @@ import { ProductserviceService } from '../productservice.service';
 export class CheckoutComponent implements OnInit {
 
   constructor(private productservice: ProductserviceService) { }
+  @ViewChild('checkoutt',{static: false}) checkoutt: ElementRef;
 checkoutList = [];
 totalcartprice = 0;
 modalview = false;
   ngOnInit() {
+    console.log(this.checkoutt);
+    
     this.productservice.closemodalSubj.subscribe((succ: any)=>{
       if(succ){
         if(succ.key=='close'){
@@ -44,6 +47,7 @@ modalview = false;
 
   openModal(){
     this.modalview = true;
+    this.productservice.openModalsubj.next({key:'displayform'})
   }
 
 }

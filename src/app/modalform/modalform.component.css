@@ -7,3 +7,15 @@
     background: rgba(29, 28, 28, 0.404);
     top: 0px;
 }
+
+.errorbtn{
+    font-weight: 1000;
+    font-size: 34px;
+    color: white;
+    max-width: 130px;
+    min-width: 70px !important;
+    border-radius: 68%;
+    background: #ff4064;
+    max-height: 130px !important;
+    padding: 12px;
+}

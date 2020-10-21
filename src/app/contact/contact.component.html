@@ -12,11 +12,12 @@
                         <div class="row">
                             <div class="col-xl-6 col-lg-8 col-md-8">
                                 <div class="hero__caption hero__caption2">
-                                    <h1 data-animation="fadeInUp" data-delay=".4s">Contact Us</h1>
+                                    <h1 data-animation="fadeInUp" data-delay=".4s">Check balance</h1>
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                            <li class="breadcrumb-item"><a href="#">Contact</a></li>
+                                            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                                            <li class="breadcrumb-item"><a routerLink="/checkbalance">Checkbalance</a>
+                                            </li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -41,7 +42,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Gift Card helper</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -57,31 +58,112 @@
             </div>
         </div>
 
+        <div class="container" *ngIf="!selectedgiftcard">
+            <h2 class="text-center mt-4">Select any of the gift card options that you want to check balance for</h2>
+            <div class="row">
+                <div class="col-3  rounded offset-1 ">
+                    <div class="selectcard d-flex align-items-center">
+                        <div (click)="clickedOn('homedepot')" class="text-white maincard"
+                            style="background: cyan; cursor: pointer;">
+                            <h2>Homedepot</h2>
+                            <p>Check your homedepot gift card balance here</p>
+                        </div>
+                    </div>
 
-        <div class="mt-4 mb-4">
-            <label for="cardnumber" class="d-block text-muted">Card Number</label>
-            <input class="d-block inppnumber" [(ngModel)]="cardNumberval" (input)="cardInputCapture($event)"
-                id="cardnumber" type="text" placeholder="Enter your gift card number here">
-        </div>
 
-        <div class="mb-4">
-            <label for="cardpin" class="d-block text-muted">
-                <div class="d-flex justify-content-between inppnumber">
-                    <span>Pin</span>
-                    <span data-toggle="modal" data-target="#exampleModal"><small style="cursor: pointer;"
-                            onclick="clickedOpenModal()" class="text-info">Where Do I find
-                            this?</small></span>
+
                 </div>
-            </label>
-            <input class="d-block inppnumber" maxlength="4" [(ngModel)]="cardval" (input)="cardPinCapture($event)"
-                id="cardpin" type="number" placeholder="----">
+                <div class="col-3  rounded offset-1 ">
+                    <div class="selectcard d-flex align-items-center">
+                        <div (click)="clickedOn('walmart')" class="text-white maincard"
+                            style="background: cyan;  cursor: pointer;">
+                            <h2>Walmart</h2>
+                            <p>Check your walmart gift card balance here</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3  rounded offset-1 ">
+                    <div class="selectcard d-flex align-items-center">
+                        <div (click)="clickedOn('target')" class="text-white maincard"
+                            style="background: cyan;  cursor: pointer;">
+                            <h2>Target</h2>
+                            <p>Check your target gift card balance here</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-3  rounded offset-1 ">
+                        <div class="selectcard d-flex align-items-center">
+    
+                            <div (click)="clickedOn('target')" class="text-white maincard" style="background: cyan;  cursor: pointer; background-image: url(../../assets/img/Amazon_cut.jpg);
+                                background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;">
+                                <div style="">
+                                    <div>
+                                        <h2 class="text-white">Target</h2>
+                                        <p class="text-white">Check your target gift card balance</p>
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </div>
+    
+    
+    
+                    </div> -->
+            </div>
         </div>
 
-        <div>
-            <button class="btn mb-4" (click)="clickedcheck()">check balance</button>
+
+        <div *ngIf="selectedgiftcard">
+            <h2 class="text-center mt-4">Enter your {{selectedgiftcard}} gift card details to check balance</h2>
+            <form [formGroup]="myForm">
+                <div class="mt-4 mb-4">
+                    <label for="cardnumber" class="d-block text-muted">Card Number</label>
+                    <input class="d-block inppnumber" [(ngModel)]="cardNumberval" (input)="cardInputCapture($event)"
+                        id="cardnumber" maxlength="23" minlength="23" type="text" placeholder="XXXXXXXXXXXXXXXXXXXXXXX"
+                        formControlName="cardnumber">
+                    <div *ngIf="myForm.controls.cardnumber.valid==false&&myForm.controls.cardnumber.touched==true"
+                        class="d-flex justify-content-center" style="    align-items: center;
+                    margin-top: 1rem;">
+                        <p class=" text-center w-50 p-1 rounded" style="background: #ff6683;">
+                            <small class="text-white">Please enter valid gift card number</small>
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+                    <label for="cardpin" class="d-block text-muted">
+                        <div class="d-flex justify-content-between inppnumber">
+                            <span>Pin</span>
+                            <span data-toggle="modal" data-target="#exampleModal"><small style="cursor: pointer;"
+                                    onclick="clickedOpenModal()" class="text-info">Where Do I find
+                                    this?</small></span>
+                        </div>
+                    </label>
+                    <input class="d-block inppnumber" [(ngModel)]="cardval" (input)="cardPinCapture($event)"
+                        id="cardpin" type="number" maxlength="4" placeholder="XXXX" formControlName="pinnumber">
+
+                    <div class="d-flex justify-content-center" style="    align-items: center;
+                    margin-top: 1rem;"
+                        *ngIf="(myForm.controls.pinnumber.valid==false&&myForm.controls.pinnumber.touched==true)||(pinvalid==false&&myForm.controls.pinnumber.touched==true)">
+                        <p class=" text-center w-50 p-1 rounded" style="background: #ff6683;">
+                            <small class="text-white">Please enter valid length pin number</small>
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn mb-4" (click)="clickedcheck()">check balance</button>
+                </div>
+            </form>
         </div>
+
+
 
     </div>
+
 
     <footer>
         <div class="footer-wrapper">
@@ -200,4 +282,30 @@
             </div>
         </div>
     </div>
+
+    <div class="modal show" id="busymodal" tabindex="-1" role="dialog" aria-labelledby="busymodal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="busymodal">
+                        Oops!, server is facing huge traffic, please check after some time
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img class="pinimg" src="./assets/img/pinfind.jpg" alt="findPin">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-modalform></app-modalform>
+
+
 </div>

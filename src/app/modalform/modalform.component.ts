@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductserviceService } from '../productservice.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,22 +10,52 @@ import { ProductserviceService } from '../productservice.service';
 })
 export class ModalformComponent implements OnInit {
 
-  constructor(private productservice: ProductserviceService) { }
+  constructor(private productservice: ProductserviceService, private routerr: Router) { }
 
   ngOnInit() {
+    this.productservice.openModalsubj.subscribe((succe)=>{
+      console.log(succe);
+      
+      if(succe){
+        if(succe.key=='displayerror'){
+          this.displayerror = succe.key;
+        }
+        else if(succe.key=='displayform'){
+          this.displayform = succe.key;
+        }
+      }
+    })
   }
 
-  closeModal() {
-    this.productservice.closemodalSubj.next({key: 'close'});
+  clickedclose(){
+    this.displayerror = null;
+this.displayform = null
   }
+  displayerror = null;
+  displayform = null
+  closeModal() {
+    this.displayerror = null;
+    this.displayform = null
+  }
+
+  namevalue='';
+  mobilevalue = '';
+  addressvalue = '';
+  emailvalue = '';
 
   clickedSubmit(){
-    const msg = 'Query saved succesfully, We will get back to you with the order';
+    if(this.namevalue==''||this.emailvalue==''||this.addressvalue==''||this.mobilevalue==''){
+      alert('All feilds are mandatory. Please enter valid details in all feilds');
+      return;
+    }
+    const msg = 'Please login before making any further operations, You will be redirected to login page shortly';
     this.showmsgg = true;
     setTimeout(()=>{
-      this.productservice.closemodalSubj.next({key: 'close'});
-    },3500)
+      
+      this.closeModal();
+      this.routerr.navigateByUrl('/login')
+    },4000)
   }
   showmsgg = false;
-  msgg='Query saved succesfully, We will get back to you with the order';
+  msgg='Please login before making any further operations, You will be redirected to login page shortly';
 }

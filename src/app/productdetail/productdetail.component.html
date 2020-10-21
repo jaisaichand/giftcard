@@ -65,9 +65,16 @@
               </p>
               <div class="card_area">
 
-                <div class="add_to_cart" (click)="addtocart()">
+                <div *ngIf="showmsg==false || clickedaddTocart==false" class="add_to_cart" (click)="addtocart()">
                   <a href="javascript:void(0)" class="btn">add to cart</a>
 
+                </div>
+
+                <div *ngIf="showmsg==true||clickedaddTocart==true">
+                  <div class="row justify-content-center rounded" style="background-color: #1fd749c4!important">
+                    <p class="text-white" style="border: none !important; padding: 0px !important;">Added to your cart
+                      succesfully</p>
+                  </div>
                 </div>
 
               </div>
@@ -156,8 +163,10 @@
                   </div>
                   <div class="footer-tittle">
                     <div class="footer-pera">
-                      <p>Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros
-                        dolor interdum nulla.</p>
+                      <p>When you visit our store, make yourself at home in our many room settings in the store. Squeeze
+                        the upholsteries, feel the oriental rugs, try the sofa beds and open the cabinets to feel the
+                        quality. On the price tag, you’ll find all you need to know about a product, including where in
+                        the store you can pick it up.</p>
                     </div>
                   </div>
                   <!-- social -->

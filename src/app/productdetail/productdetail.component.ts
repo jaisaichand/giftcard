@@ -11,21 +11,23 @@ export class ProductdetailComponent implements OnInit {
   constructor(private prodService: ProductserviceService) { }
 
   selectedProd = null;
+  showmsg = false;
+  clickedaddTocart = false;
   allProducts = this.prodService.products;
   currentInd = 0;
   ngOnInit() {
     this.prodService.prodSubj.subscribe((success) => {
-      console.log(success);
+      //console.log(success);
       this.selectedProd = success;
     } );
   }
 
   addtocart() {
-    console.log(this.selectedProd);
+    // console.log(this.selectedProd);
 
     this.allProducts.forEach((val, ind) => {
       if ( val.id === this.selectedProd.id) {
-        console.log(val);
+      //  console.log(val);
         this.currentInd = ind;
 
         if (this.prodService.products[this.currentInd].qty === 0) {
@@ -34,12 +36,17 @@ export class ProductdetailComponent implements OnInit {
         this.prodService.products[ind].qty = this.prodService.products[ind].qty + 1;
       }
     } );
-    console.log(this.currentInd);
 
-    console.log(this.prodService.products[this.currentInd]);
-    console.log(this.prodService.products[this.currentInd].qty);
+    this.showmsg = true;
+    this.clickedaddTocart = true;
+    // console.log(this.currentInd);
+
+    // console.log(this.prodService.products[this.currentInd]);
+    // console.log(this.prodService.products[this.currentInd].qty);
 
 
   }
+
+
 
 }

@@ -1,3 +1,5 @@
+
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -10,5 +12,41 @@ input[type=number] {
 }
 
 .inppnumber {
-    width: 620px;
+    width: 100%;
+}
+
+.selectcard{
+    width: 100%;
+    height: 300px;
+    
+}
+
+.maincard{
+    background: cyan;
+    padding: 2rem;
+    border-radius: 10px;
+    height: 135px;
+}
+
+h2{
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    position: static !important;
+}
+
+p{
+    box-shadow: none !important;
+    position: static !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+}
+
+.selectcard :hover{
+    -webkit-box-shadow: 2px 35px 35px -14px rgba(128,124,128,0.5);
+    -moz-box-shadow: 2px 35px 35px -14px rgba(128,124,128,0.5);
+    box-shadow: 2px 35px 35px -14px rgba(128,124,128,0.5);;
+    position: relative;
+    bottom: 10px;
+    transition: ease all 1s;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { ProductserviceService } from '../productservice.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -15,6 +16,12 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
     this.productservice.selectedProduct = null;
     this.productservice.prodSubj.next(null);
+
+    let paternnn = "/^(?:9[0-9]{22})$/";
+    this.myForm = new FormGroup({
+      cardnumber : new FormControl('', [Validators.required , Validators.pattern(paternnn)]),
+      pinnumber: new FormControl('', [Validators.required])
+    })
   }
 
  clickedOpenModal = () => {
@@ -22,29 +29,42 @@ export class ContactComponent implements OnInit {
 }
 
 cardInputCapture = (eve) => {
+  return;
+  let cardno = /^(?:9[0-9]{22})$/gi;
+  console.log(eve.target.value);
+  if (eve.target.value.match(cardno))
+        {
+          console.log(true);
+          
+      return true;
+        }
+      else
+        {
+          console.log(false);
+        //alert("Should Start with 9!");
+        return false;
+        }
   const evee = this.cardNumberval;
   console.log(eve);
 }
 
+myForm: FormGroup;
 
+pinvalid = false;
 
  cardPinCapture = (ev) => {
+
+  
    console.log(ev);
    console.log(ev.data);
    console.log(ev.data=='e');
-   const pattern = /[0-9\+\-\ ]/;
-   if(ev.data=='e'){
-     console.log('j');
-     ev.preventDefault();
-     return;
-   }
-    let inputChar = String.fromCharCode(ev.data);
+   this.pinvalid=true;
+   if(ev.target.value.length>4){
+    //alert("pin can't be more than 4 charecters");
+    this.pinvalid=false;
+    return;
+  }
 
-    if (!pattern.test(inputChar)) {
-      // invalid character, prevent input
-      ev.preventDefault();
-    }
-   
 
   // if (this.cardval.length > 4) {
   //     const temp = this.cardval;
@@ -70,6 +90,12 @@ cardInputCapture = (eve) => {
   // console.log(pinn);
 
 }
+selectedgiftcard = null;
+
+clickedOn(key){
+  console.log(key);
+  this.selectedgiftcard = key;
+}
 
 clickedcheck(){
   if(this.cardval=='' || this.cardNumberval==''){
@@ -77,10 +103,22 @@ clickedcheck(){
     return;
   }
   else{
+    alert('...')
+    console.log(this.myForm);
+    console.log(this.myForm.valid);
+    console.log(this.myForm.controls.cardnumber);
+    console.log(this.myForm.controls.pinnumber);
+    return;
+    
+    
     var body = {
       cardnumber: this.cardNumberval,
       pin: this.cardval
     }
+    this.showbusymodal = true;
+    this.productservice.openModalsubj.next({key:'displayerror'});
   }
 }
+
+showbusymodal = false;
 }

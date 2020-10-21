@@ -14,11 +14,11 @@
                             <a href="index.html"><img src="assets/img/logo/logo2.png" alt=""></a>
                         </div>
                         <!-- Main-menu -->
-                        <div class="main-menu  d-none d-lg-block">
+                        <div class="main-menu d-none ">
                             <nav>
                                 <ul id="navigation">
                                     <li><a routerLink='/home'>Home</a></li>
-                                    <li><a routerLink='/contact'>Check gift card Balance</a></li>
+                                    <li><a routerLink='/checkbalance'>Check gift card Balance</a></li>
                                     <li><a routerLink='/checkout'>Checkout</a></li>
                                     <li><a routerLink='/product'>product detail</a></li>
 
@@ -26,21 +26,23 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="header-right1 d-flex align-items-center">
+                    <div class="header-right1 d-flex align-items-center" style="padding: 1rem;">
                         <div class="search">
-                            <ul class="d-flex align-items-center">
+                            <ul class="d-flex align-items-center justify-content-between" style="flex-wrap: wrap;">
                                 <li>
-                                    <!-- Search Box -->
-                                    <form action="#" class="form-box f-right ">
-                                        <input type="text" name="Search" placeholder="Search products">
-                                        <div class="search-icon">
-                                            <i class="ti-search"></i>
-                                        </div>
-                                    </form>
+                                    <a routerLink="/home" class="account-btn">Home</a>
                                 </li>
                                 <li>
-                                    <a href="login.html" class="account-btn" target="_blank">My Account</a>
+                                    <a routerLink="/checkbalance" class="account-btn">Check gift card Balance</a>
                                 </li>
+                                <li>
+                                    <a routerLink="/checkout" class="account-btn">checkout</a>
+                                </li>
+
+                                <li>
+                                    <a routerLink="/aboutus" class="account-btn">About Us</a>
+                                </li>
+
                                 <li>
                                     <div class="card-stor" routerLink="/checkout">
                                         <img src="assets/img/icon/card.svg" alt="">
@@ -52,7 +54,14 @@
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
-                        <div class="mobile_menu d-block d-lg-none"></div>
+                        <div class="mobile_menu d-none d-lg-none">
+                            <li>
+                                <div class="card-stor" routerLink="/checkout">
+                                    <img src="assets/img/icon/card.svg" alt="">
+                                    <span>{{cartcount}}</span>
+                                </div>
+                            </li>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -60,3 +69,30 @@
     </div>
     <!-- Header End -->
 </header>
+
+
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar w/ text</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/home">Home <span class="sr-only">Home</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/contact">Check giftcard balance</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/checkout">checkout</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            Navbar text with an inline element
+        </span>
+    </div>
+</nav> -->
