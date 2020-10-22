@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ModalformComponent } from './modalform/modalform.component';
 import { LoginComponent } from './login/login.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { ItemrowComponent } from './itemrow/itemrow.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AboutusComponent } from './aboutus/aboutus.component';
     FooterComponent,
     ModalformComponent,
     LoginComponent,
-    AboutusComponent
+    AboutusComponent,
+    ItemrowComponent
   ],
   imports: [
     BrowserModule,

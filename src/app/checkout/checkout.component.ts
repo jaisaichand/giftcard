@@ -23,7 +23,7 @@ modalview = false;
         }
       }
     })
-    this.productservice.products.forEach(( val , ind ) => {
+    this.productservice.realproducts.forEach(( val , ind ) => {
       if (val.qty > 0 ) {
         this.checkoutList.push(val);
         this.totalcartprice = this.totalcartprice + (val.qty * val.price );
@@ -38,7 +38,7 @@ modalview = false;
     this.checkoutList.splice(index, 1);
     this.totalcartprice = this.totalcartprice - price;
     this.productservice.addproductsubj.next({key: 'remove'});
-    this.productservice.products.forEach((val, ind) => {
+    this.productservice.realproducts.forEach((val, ind) => {
       if (val.id === prod.id) {
         this.productservice.products[ind].qty = 0;
       }

@@ -13,27 +13,28 @@ export class ProductdetailComponent implements OnInit {
   selectedProd = null;
   showmsg = false;
   clickedaddTocart = false;
-  allProducts = this.prodService.products;
+  allProducts = this.prodService.realproducts;
   currentInd = 0;
   ngOnInit() {
     this.prodService.prodSubj.subscribe((success) => {
-      //console.log(success);
+      console.log(success);
       this.selectedProd = success;
     } );
   }
 
   addtocart() {
-    // console.log(this.selectedProd);
-
-    this.allProducts.forEach((val, ind) => {
+    console.log(this.selectedProd);
+    console.log(this.prodService.realproducts);
+    
+    this.prodService.realproducts.forEach((val, ind) => {
       if ( val.id === this.selectedProd.id) {
-      //  console.log(val);
+       console.log(val);
         this.currentInd = ind;
 
-        if (this.prodService.products[this.currentInd].qty === 0) {
+        if (this.prodService.realproducts[this.currentInd].qty === 0) {
           this.prodService.addproductsubj.next({key: 'add'} );
         }
-        this.prodService.products[ind].qty = this.prodService.products[ind].qty + 1;
+        this.prodService.realproducts[ind].qty = this.prodService.realproducts[ind].qty + 1;
       }
     } );
 

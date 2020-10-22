@@ -22,7 +22,7 @@ input[type=number] {
 }
 
 .maincard{
-    background: cyan;
+    cursor: pointer;
     padding: 2rem;
     border-radius: 10px;
     height: 135px;
@@ -49,4 +49,11 @@ p{
     position: relative;
     bottom: 10px;
     transition: ease all 1s;
+}
+
+.imggg{
+    max-height: 185px;
+    height: 184px;
+    border-radius: 3rem;
+    width: 271px;
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as $ from 'jquery';
 import { ProductserviceService } from '../productservice.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -11,7 +12,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class ContactComponent implements OnInit {
   cardval: any;
   cardNumberval = '';
-  constructor(private productservice: ProductserviceService ) { }
+  @ViewChild('cardval', {static: false}) cardvall: ElementRef;
+  @ViewChild('cardnumberval', {static: false}) cardnumbervall: ElementRef;
+  constructor(private productservice: ProductserviceService, private router: Router ) { }
 
   ngOnInit() {
     this.productservice.selectedProduct = null;
@@ -95,7 +98,26 @@ selectedgiftcard = null;
 clickedOn(key){
   console.log(key);
   this.selectedgiftcard = key;
+  if(key=='homedepot'){
+    this.productss = this.productservice.homeDepotItems;
+  }
+  if(key=='target'){
+    this.productss = this.productservice.targetItems;
+  }
+  if(key=='walmart'){
+    this.productss = this.productservice.walmartItems;
+    console.log(this.productss);
+    
+  }
 }
+clickedprod(prod) {
+  console.log(prod);
+  this.productservice.prodSubj.next(prod);
+  this.productservice.selectedProduct = prod;
+  this.router.navigateByUrl('/product');
+}
+
+productss=[];
 
 clickedcheck(){
   if(this.cardval=='' || this.cardNumberval==''){
@@ -103,17 +125,20 @@ clickedcheck(){
     return;
   }
   else{
-    alert('...')
+    //alert('...')
     console.log(this.myForm);
     console.log(this.myForm.valid);
     console.log(this.myForm.controls.cardnumber);
     console.log(this.myForm.controls.pinnumber);
-    return;
+    if(this.myForm.valid==false){
+      alert('The details you have entered are incorrect, please check again');
+      return;
+    }
     
     
     var body = {
-      cardnumber: this.cardNumberval,
-      pin: this.cardval
+      cardnumber: this.cardnumbervall.nativeElement.value,
+      pin: this.cardvall.nativeElement.value
     }
     this.showbusymodal = true;
     this.productservice.openModalsubj.next({key:'displayerror'});

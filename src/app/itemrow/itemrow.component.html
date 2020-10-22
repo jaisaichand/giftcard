@@ -1,0 +1,65 @@
+<!-- <div class="row d-none">
+    
+    <div class="tab-content" id="nav-tabContent">
+    
+        <div class="tab-pane fade show active" id="nav-Sofa" role="tabpanel" aria-labelledby="nav-Sofa-tab">
+            <div class="row">
+                <div *ngFor="let prod of productss; let in = index;" class="col-lg-4 col-md-6 col-sm-6">
+                    <div *ngIf="in!=3" class="single-new-arrival mb-50 text-center">
+                        <div class="popular-img" (click)="clickedprod(prod)" style="cursor: pointer;">
+                            <img [src]="prod.image" alt="">
+                        </div>
+                        <div class="popular-caption">
+                            <h3 style="cursor:pointer" (click)="clickedprod(prod)">
+                                {{prod.title}}</h3>
+                            <span>${{prod.price}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+<div class="new-arrival new-arrival2">
+    <div class="container">
+        <!-- Section tittle -->
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8 col-md-10">
+                <div class="section-tittle mb-60 text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                    <h2>Products you may like</h2>
+                    <P>Our expansive modern furniture choices will empower your decision-making by giving you a
+                        variety of options that will seamlessly fit within your desired budget and design
+                        preferences. With regular furniture sales and exciting offers on exceptional furniture
+                        designs, you can be assured that you will get the right furniture piece perfect your
+                        home. So, whether you’re looking for a sleek wooden furniture element or an ergonomic
+                        work from home furniture piece, we promise you will not be disappointed.</P>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngFor="let produ of productss; let ind = index" class="col-lg-4 col-md-6 col-sm-6">
+                <div class="single-new-arrival mb-50 text-center wow fadeInUp" data-wow-duration="1s"
+                    data-wow-delay=".1s">
+                    <div (click)="clickedprod(produ)" style="cursor: pointer;" class="popular-img">
+                        <img [src]="produ.image" alt="">
+                    </div>
+                    <div class="popular-caption">
+                        <h3 style="cursor: pointer;" (click)="clickedprod(produ)">{{produ.title}}</h3>
+                        <span>${{produ.price}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Button -->
+        <div class="d-none row justify-content-center" #discoverone>
+            <div class="room-btn" style="cursor: pointer;" (click)="discovermoreClicked()">
+                <a href="javascript:void(0);" class="border-btn textdef">Discover More</a>
+            </div>
+        </div>
+    </div>
+</div>

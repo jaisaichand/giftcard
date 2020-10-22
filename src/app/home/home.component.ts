@@ -15,12 +15,12 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('discoverone', {static: false}) discoverone: ElementRef;
 
-  products = this.productservice.products;
-  productsfirst = this.productservice.productsfirst;
-  productssecond = this.productservice.productssecond;
-  productssecondsliced = this.productservice.productssecondSliced;
+  products = this.productservice.realproducts;
+  productsfirst = this.productservice.walmartItems;
+  productssecond = this.productservice.targetItems;
+  productssecondsliced = this.productservice.homeDepotItems;
   finproductssecond = this.productssecondsliced;
-  productstoppics = this.productservice.productstoppics;
+  productstoppics = this.productservice.targetItems;
 
   clickedprod(prod) {
     console.log(prod);
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   discovermoreClicked() {
-    this.finproductssecond = this.productssecond;
+    this.finproductssecond = [this.productservice.walmartItems[this.productservice.walmartItems.length-2],this.productservice.walmartItems[this.productservice.walmartItems.length-1]];
     this.renderer.addClass(this.discoverone.nativeElement, 'd-none' );
   }
 
