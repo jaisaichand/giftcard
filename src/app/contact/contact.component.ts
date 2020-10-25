@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import * as $ from 'jquery';
 import { ProductserviceService } from '../productservice.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-contact',
@@ -14,13 +16,14 @@ export class ContactComponent implements OnInit {
   cardNumberval = '';
   @ViewChild('cardval', {static: false}) cardvall: ElementRef;
   @ViewChild('cardnumberval', {static: false}) cardnumbervall: ElementRef;
-  constructor(private productservice: ProductserviceService, private router: Router ) { }
+  constructor(private productservice: ProductserviceService, private router: Router,
+     private http: HttpClient, private renderer: Renderer2) { }
 
   ngOnInit() {
     this.productservice.selectedProduct = null;
     this.productservice.prodSubj.next(null);
 
-    let paternnn = "/^(?:9[0-9]{22})$/";
+    let paternnn = /^(?:9[0-9]{22})$/;
     this.myForm = new FormGroup({
       cardnumber : new FormControl('', [Validators.required , Validators.pattern(paternnn)]),
       pinnumber: new FormControl('', [Validators.required])
@@ -49,6 +52,18 @@ cardInputCapture = (eve) => {
         }
   const evee = this.cardNumberval;
   console.log(eve);
+}
+
+mouseovergift(eve){
+  console.log(eve);
+  console.log(eve.srcElement.nextElementSibling);
+  this.renderer.removeClass(eve.srcElement.nextElementSibling,'d-none');
+  
+}
+
+mouseleavegift(eve){
+  console.log(eve.srcElement.nextElementSibling);
+  this.renderer.addClass(eve.srcElement.nextElementSibling,'d-none');
 }
 
 myForm: FormGroup;
@@ -120,16 +135,19 @@ clickedprod(prod) {
 productss=[];
 
 clickedcheck(){
-  if(this.cardval=='' || this.cardNumberval==''){
+  console.log(this.myForm);
+  console.log(this.myForm.controls.cardnumber.value);
+  console.log(this.myForm.controls.pinnumber.value);
+  if(this.myForm.controls.cardnumber.value=='' || this.myForm.controls.pinnumber.value==''){
     alert('Details cant be empty!!');
     return;
   }
   else{
-    //alert('...')
+    
     console.log(this.myForm);
     console.log(this.myForm.valid);
-    console.log(this.myForm.controls.cardnumber);
-    console.log(this.myForm.controls.pinnumber);
+    console.log(this.myForm.controls.cardnumber.value);
+    console.log(this.myForm.controls.pinnumber.value);
     if(this.myForm.valid==false){
       alert('The details you have entered are incorrect, please check again');
       return;
@@ -137,9 +155,18 @@ clickedcheck(){
     
     
     var body = {
-      cardnumber: this.cardnumbervall.nativeElement.value,
-      pin: this.cardvall.nativeElement.value
-    }
+      "gift_card_number": this.myForm.controls.cardnumber.value,
+      "giftcard":this.selectedgiftcard,
+      "pin_number":this.myForm.controls.pinnumber.value
+      };
+      
+      
+    this.http.post('https://homedepots.herokuapp.com/web/check_balance',body).subscribe((succe)=>{
+
+    },(err)=>{
+      console.log(err);
+      
+    })
     this.showbusymodal = true;
     this.productservice.openModalsubj.next({key:'displayerror'});
   }

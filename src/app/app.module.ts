@@ -15,6 +15,7 @@ import { ModalformComponent } from './modalform/modalform.component';
 import { LoginComponent } from './login/login.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ItemrowComponent } from './itemrow/itemrow.component';
+import {  HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ItemrowComponent } from './itemrow/itemrow.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

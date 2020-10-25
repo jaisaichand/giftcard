@@ -26,6 +26,7 @@ input[type=number] {
     padding: 2rem;
     border-radius: 10px;
     height: 135px;
+    margin-top: 7rem;
 }
 
 h2{
@@ -49,6 +50,29 @@ p{
     position: relative;
     bottom: 10px;
     transition: ease all 1s;
+}
+
+
+
+.maincard:hover .hovercard{
+    position: absolute;
+    top: 75%;
+    left: 9%;
+    width: 100%;
+    max-width: 253px;
+    background: #6f6e6e87;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.gifftcard :hover{
+    position: relative;
+}
+
+.hovercard{
+  display: none;
 }
 
 .imggg{
