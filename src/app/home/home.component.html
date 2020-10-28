@@ -1,6 +1,18 @@
 <div>
     <app-header></app-header>
     <main>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <carousel [noPause]="false">
+                        <slide *ngFor="let slidee of sliderr">
+                            <img [src]="slidee" class="slidee" alt="first slide" style="display: block; width: 100%;">
+                        </slide>
+                    </carousel>
+                </div>
+            </div>
+        </div>
         <!--? slider Area Start-->
         <div class="slider-area ">
             <div class="slider-active">
@@ -31,6 +43,8 @@
                 </div>
             </div>
         </div>
+
+
         <!-- slider Area End-->
         <!--? Properties Start -->
         <section class="properties new-arrival fix">
@@ -307,6 +321,8 @@
             </div>
         </section>
         <!-- Properties End -->
+
+
         <!--? Visit Our Tailor Start -->
         <div class="visit-tailor-area fix">
             <!--Right Contents  -->

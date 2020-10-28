@@ -3,13 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "giftcards": {
+    "furnangular": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -17,19 +13,16 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/giftcards",
+            "outputPath": "dist/furnangular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/font-awesome/scss/font-awesome.scss"
-            ],
-            "scripts": []
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -66,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "giftcards:build"
+            "browserTarget": "furnangular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "giftcards:build:production"
+              "browserTarget": "furnangular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "giftcards:build"
+            "browserTarget": "furnangular:build"
           }
         },
         "test": {
@@ -87,9 +80,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
-            "scripts": []
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css",
+              "src/assets/css/slicknav.css"
+            ],
+            "scripts": ["src/assets/js/slick.min.js",
+            "src/assets/js/jquery.slicknav.min.js"]
           }
         },
         "lint": {
@@ -100,23 +100,24 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "giftcards:serve"
+            "devServerTarget": "furnangular:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "giftcards:serve:production"
+              "devServerTarget": "furnangular:serve:production"
             }
           }
         }
       }
-    }
-  },
-  "defaultProject": "giftcards"
+    }},
+  "defaultProject": "furnangular"
 }

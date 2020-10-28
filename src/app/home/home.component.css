@@ -1,0 +1,7 @@
+.slidee {
+  max-width: 100%;
+  max-height: 560px;
+  min-width: 100%;
+  object-fit: cover;
+  object-position: center;
+}

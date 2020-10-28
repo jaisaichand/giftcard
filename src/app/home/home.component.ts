@@ -33,6 +33,14 @@ export class HomeComponent implements OnInit {
     
   }
 
+  activeSlideIndex =0;
+
+  sliderr = [
+    'assets/img/carouselone.jpeg',
+    'assets/img/carouseltwo.jpg',
+    'assets/img/carouselthree.jpg'
+  ]
+
   discovermoreClicked() {
     this.finproductssecond = [this.productservice.walmartItems[this.productservice.walmartItems.length-2],this.productservice.walmartItems[this.productservice.walmartItems.length-1]];
     this.renderer.addClass(this.discoverone.nativeElement, 'd-none' );

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -16,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ItemrowComponent } from './itemrow/itemrow.component';
 import {  HttpClientModule } from '@angular/common/http';
+import { CarouselModule, CarouselConfig } from 'ngx-bootstrap/carousel';
 
 
 @NgModule({
@@ -33,13 +35,15 @@ import {  HttpClientModule } from '@angular/common/http';
     ItemrowComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    BrowserAnimationsModule,
+    CarouselModule.forRoot()
   ],
-  providers: [],
+  providers: [CarouselConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

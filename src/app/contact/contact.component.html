@@ -1,9 +1,21 @@
-<div>
+<div class="px-2">
     <!-- ? Preloader Start -->
 
     <!-- Preloader Start -->
     <app-header></app-header>
     <main>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <carousel [noPause]="false">
+                        <slide *ngFor="let slidee of sliderr">
+                            <img [src]="slidee" class="slidee" alt="first slide" style="display: block; width: 100%;">
+                        </slide>
+                    </carousel>
+                </div>
+            </div>
+        </div>
         <!--? slider Area Start-->
         <div class="slider-area ">
             <div class="slider-active">
@@ -34,7 +46,7 @@
         <!-- Contact Area End -->
     </main>
 
-    <div class="" style="margin-bottom: 9rem;">
+    <div class="px-5" style="margin-bottom: 9rem;">
 
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -61,7 +73,7 @@
         <div class="container" *ngIf="!selectedgiftcard">
             <h2 class="text-center mt-4">Select any of the gift card options that you want to check balance for</h2>
             <div class="row">
-                <div class="col-lg-3 col-md-3 offset-md-1 col-sm-12 maincard rounded offset-lg-1 ">
+                <div class="col-lg-5 col-md-5 offset-md-1 col-sm-12 maincard rounded offset-lg-1 ">
                     <!-- <div class="selectcard d-flex align-items-center">
                         <div  class="text-white " style="cursor: pointer;">
                             
@@ -79,7 +91,7 @@
                     </div>
 
                 </div>
-                <div class="col-lg-3 col-md-3 offset-md-1 col-sm-12 maincard rounded offset-lg-1 ">
+                <div class="col-lg-5 col-md-5 offset-md-1 col-sm-12 maincard rounded offset-lg-1 ">
                     <!-- <div class="selectcard d-flex align-items-center">
                         <div  class="text-white " style="  cursor: pointer;">
                             
@@ -96,12 +108,8 @@
 
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 offset-md-1 col-sm-12 maincard  rounded offset-lg-1 ">
-                    <!-- <div class="selectcard d-flex align-items-center">
-                        <div  class="text-white " style=" cursor: pointer;">
-                            
-                        </div>
-                    </div> -->
+                <div class="d-none  ">
+                    <!-- col-lg-3 col-md-3 offset-md-1 col-sm-12 maincard  rounded offset-lg-1 -->
                     <img (click)="clickedOn('target')" class="imggg" src="../../assets/img/target-gift-card.png"
                         alt="target-gift-card">
 
@@ -142,7 +150,7 @@
 
 
                 <h2 class="text-center mt-4">Enter your {{selectedgiftcard}} gift card details to check balance</h2>
-                <form [formGroup]="myForm">
+                <form [formGroup]="myForm" class="px-5">
                     <div class="mt-4 mb-4">
                         <label for="cardnumber" class="d-block text-muted">Card Number</label>
                         <input #cardnumberval class="d-block inppnumber" (input)="cardInputCapture($event)"

