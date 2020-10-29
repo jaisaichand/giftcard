@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   constructor(private productService: ProductserviceService) { }
 
   ngOnInit() {
+    window.scrollTo(0,0)
   }
   invalidd = null;
 

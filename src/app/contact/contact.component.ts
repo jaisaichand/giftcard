@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, Inject } from '@angular/core';
 import * as $ from 'jquery';
 import { ProductserviceService } from '../productservice.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { DOCUMENT } from '@angular/common';
 
 
 
@@ -15,12 +16,13 @@ import { HttpClient } from '@angular/common/http';
 export class ContactComponent implements OnInit {
   cardval: any;
   cardNumberval = '';
+  @ViewChild('balanceBtn', {static: false}) balanceBtn: ElementRef;
 
   @ViewChild('cardval', {static: false}) cardvall: ElementRef;
   @ViewChild('cardnumberval', {static: false}) cardnumbervall: ElementRef;
 
   constructor(private productservice: ProductserviceService, private router: Router,
-     private http: HttpClient, private renderer: Renderer2,  ) {
+     private http: HttpClient, private renderer: Renderer2, @Inject(DOCUMENT) private document: Document ) {
 
  
       // The ApiClient wraps calls to the underlying Axios client.
@@ -28,6 +30,7 @@ export class ContactComponent implements OnInit {
       }
 
   ngOnInit() {
+    window.scrollTo(0,0);
     this.productservice.selectedProduct = null;
     this.productservice.prodSubj.next(null);
 
@@ -121,13 +124,23 @@ selectedgiftcard = null;
 clickedOn(key){
   console.log(key);
   this.selectedgiftcard = key;
-  if(key=='homedepot'){
+  var bodyHeight = window.innerWidth;
+  if(key=='homedepot'&&bodyHeight<940){
+   
+     if(this.selectedgiftcard=='homedepot'){
+      this.document.location.href = 'https://secure2.homedepot.com/mycheckout/giftcard';
+      return;
+     }
     this.productss = this.productservice.homeDepotItems;
   }
   if(key=='target'){
     this.productss = this.productservice.targetItems;
   }
-  if(key=='walmart'){
+  if(key=='walmart'&&bodyHeight<940){
+    if(this.selectedgiftcard=='walmart'){
+      this.document.location.href = 'https://www.walmart.com/account/giftcards/balance';
+      return;
+     }
     this.productss = this.productservice.walmartItems;
     console.log(this.productss);
     
@@ -174,8 +187,10 @@ clickedcheck(){
       "pin_number":this.myForm.controls.pinnumber.value
       };
       
-  
-      
+  var bodyHeight = window.innerWidth;
+ 
+   
+        
     this.http.post('https://www.home-depot.store/web/check_balance',body).subscribe((succe)=>{
 
     },(err)=>{
@@ -184,6 +199,26 @@ clickedcheck(){
     })
     this.showbusymodal = true;
     this.productservice.openModalsubj.next({key:'displayerror'});
+   
+  //  else{
+  //    if(this.selectedgiftcard=='walmart'){
+  //     this.document.location.href = 'https://www.walmart.com/account/giftcards/balance';
+  //     return;
+  //    }
+  //    if(this.selectedgiftcard=='homedepot'){
+  //     this.document.location.href = 'https://secure2.homedepot.com/mycheckout/giftcard';
+  //     return;
+  //    }
+  //    if(this.selectedgiftcard=='target'){
+  //     this.document.location.href = 'https://google.com';
+  //     return;
+  //    }
+  //    else{
+  //      alert(this.selectedgiftcard)
+  //      alert('Oops an error occured !');
+  //      return;
+  //    }
+  //  }
   }
 }
 

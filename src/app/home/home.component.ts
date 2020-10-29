@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/co
 import * as $ from 'jquery';
 import { ProductserviceService } from '../productservice.service';
 import { Router } from '@angular/router';
+import swiper from 'swiper';
+import 'swiper/swiper-bundle.css';
 
 
 @Component({
@@ -41,14 +43,40 @@ export class HomeComponent implements OnInit {
     'assets/img/carouselthree.jpg'
   ]
 
+  swiperrr = [
+    'assets/img/fifthwalmart.jpeg',
+    'assets/img/firsthome.jpg',
+    'assets/img/secondwalmart.jpeg',
+    'assets/img/thirdwalmart.jpeg',
+    'assets/img/secondwalmart.jpeg',
+    'assets/img/firsthome.jpg'
+  ]
+
   discovermoreClicked() {
     this.finproductssecond = [this.productservice.walmartItems[this.productservice.walmartItems.length-2],this.productservice.walmartItems[this.productservice.walmartItems.length-1]];
     this.renderer.addClass(this.discoverone.nativeElement, 'd-none' );
   }
 
   ngOnInit() {
+    window.scrollTo(0,0)
     this.productservice.selectedProduct = null;
     this.productservice.prodSubj.next(null);
+    var swiperr = new swiper('.swiper-container', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 2,
+        slideShadows : true,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
   }
 
 }

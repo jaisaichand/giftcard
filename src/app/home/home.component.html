@@ -13,6 +13,30 @@
                 </div>
             </div>
         </div>
+
+        <!--swiper js start-->
+
+        <!-- <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div *ngFor="let hui of swiperrr" class="swiper-slide mr-4">
+                    <div class="imgBx">
+                        <img [src]="hui" alt="img1">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div> -->
+        <!--swiper js end-->
+
+        <div>
+            <swiper>
+                <div *ngFor="let jai of swiperrr" class="imgBx">
+                    <img [src]="jai" class="" alt="">
+                </div>
+            </swiper>
+        </div>
         <!--? slider Area Start-->
         <div class="slider-area ">
             <div class="slider-active">

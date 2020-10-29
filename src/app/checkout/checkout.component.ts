@@ -14,6 +14,7 @@ checkoutList = [];
 totalcartprice = 0;
 modalview = false;
   ngOnInit() {
+    window.scrollTo(0,0)
     console.log(this.checkoutt);
     
     this.productservice.closemodalSubj.subscribe((succ: any)=>{

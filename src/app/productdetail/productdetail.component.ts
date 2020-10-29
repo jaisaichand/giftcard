@@ -16,6 +16,7 @@ export class ProductdetailComponent implements OnInit {
   allProducts = this.prodService.realproducts;
   currentInd = 0;
   ngOnInit() {
+    window.scrollTo(0,0)
     this.prodService.prodSubj.subscribe((success) => {
       console.log(success);
       this.selectedProd = success;
