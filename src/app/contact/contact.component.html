@@ -5,7 +5,7 @@
     <app-header></app-header>
     <main>
 
-        <div class="container-fluid">
+        <div class="container-fluid mt-5" style="width: 94%;">
             <div class="row">
                 <div class="col-12">
                     <carousel [noPause]="false">
@@ -17,7 +17,7 @@
             </div>
         </div>
         <!--? slider Area Start-->
-        <div class="slider-area ">
+        <div class="slider-area d-none">
             <div class="slider-active">
                 <div class="single-slider hero-overly2  slider-height2 d-flex align-items-center slider-bg2">
                     <div class="container">
@@ -84,7 +84,7 @@
                         alt="homedepot">
                     <div class="imgg hovercard">
 
-                        <p class="text-white m-0 p-1" style="width: 100%; text-align: center; height: 100%;"
+                        <p class="text-white m-0 p-1" (click)="clickedOn('homedepot')" style="width: 100%; text-align: center; height: 100%;"
                             #balanceBtn>
                             Check
                             balance
@@ -104,7 +104,7 @@
 
                     <div class="imgg hovercard">
 
-                        <p class="text-white m-0 p-1" style="width: 100%; text-align: center; height: 100%;">Check
+                        <p (click)="clickedOn('walmart')" class="text-white m-0 p-1" style="width: 100%; text-align: center; height: 100%;">Check
                             balance
                         </p>
 
@@ -117,7 +117,7 @@
 
                     <div class="imgg hovercard">
 
-                        <p class="text-white m-0 p-1" style="width: 100%; text-align: center; height: 100%;">Check
+                        <p class="text-white m-0 p-1" (click)="clickedOn('target')" style="width: 100%; text-align: center; height: 100%;">Check
                             balance
                         </p>
 

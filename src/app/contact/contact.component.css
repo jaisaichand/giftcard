@@ -52,7 +52,7 @@ p {
 .maincard:hover .hovercard {
   position: absolute;
   top: 75%;
-  left: 9%;
+  left: 6%;
   width: 100%;
   max-width: 253px;
   background: #6f6e6e87;
