@@ -19,15 +19,11 @@ import { ItemrowComponent } from './itemrow/itemrow.component';
 import {  HttpClientModule } from '@angular/common/http';
 import { CarouselModule, CarouselConfig } from 'ngx-bootstrap/carousel';
 
-import { SwiperModule } from 'ngx-swiper-wrapper';
-import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import {MatStepperModule} from '@angular/material/stepper';
+// import { HighContrastModeDetector } from '@angular/cdk/a11y';
 
 
-const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
-  direction: 'horizontal',
-  slidesPerView: 'auto'
-};
+
 
 @NgModule({
   declarations: [
@@ -50,14 +46,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    SwiperModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    MatStepperModule
   ],
-  providers: [CarouselConfig,
-    {
-      provide: SWIPER_CONFIG,
-      useValue: DEFAULT_SWIPER_CONFIG
-    }],
+  providers: [CarouselConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

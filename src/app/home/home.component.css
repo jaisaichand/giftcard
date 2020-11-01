@@ -12,3 +12,8 @@
   min-height: 300px;
   min-width: 300px;
 }
+
+.mat-step-icon {
+  background: #fd8f5f;
+  color: white;
+}

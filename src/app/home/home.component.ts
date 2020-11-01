@@ -2,8 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/co
 import * as $ from 'jquery';
 import { ProductserviceService } from '../productservice.service';
 import { Router } from '@angular/router';
-import swiper from 'swiper';
-import 'swiper/swiper-bundle.css';
+
 
 
 @Component({
@@ -58,25 +57,25 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    window.scrollTo(0,0)
+    window.scrollTo(0,0);
     this.productservice.selectedProduct = null;
     this.productservice.prodSubj.next(null);
-    var swiperr = new swiper('.swiper-container', {
-      effect: 'coverflow',
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: 'auto',
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 0,
-        depth: 100,
-        modifier: 2,
-        slideShadows : true,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-      },
-    });
+    // var swiperr = new swiper('.swiper-container', {
+    //   effect: 'coverflow',
+    //   grabCursor: true,
+    //   centeredSlides: true,
+    //   slidesPerView: 'auto',
+    //   coverflowEffect: {
+    //     rotate: 0,
+    //     stretch: 0,
+    //     depth: 100,
+    //     modifier: 2,
+    //     slideShadows : true,
+    //   },
+    //   pagination: {
+    //     el: '.swiper-pagination',
+    //   },
+    // });
   }
 
 }
